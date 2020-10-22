@@ -1,0 +1,16 @@
+name: 'Slack Notify'
+description: 'Slack Notify Action'
+inputs:
+  github_host:
+    description: GitHub Host
+    required: false
+    default: 'github.com'
+  job_status:
+    description: Job status
+    required: true
+  slack_webhook:
+    description: Slack Incomming Webhook (legacy token is not supported)
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

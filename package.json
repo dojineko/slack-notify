@@ -1,0 +1,19 @@
+{
+  "name": "action-slack-notify",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "dojineko <dojineko.spiral@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && ncc build --source-map --license licenses.txt",
+    "format": "prettier --write **/*.ts"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@slack/types": "^1.10.0",
+    "@slack/webhook": "^5.0.3",
+    "@vercel/ncc": "^0.24.1",
+    "typescript": "^4.0.3"
+  }
+}
