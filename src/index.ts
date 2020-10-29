@@ -2,58 +2,71 @@ import * as core from '@actions/core'
 import * as github from '@actions/github'
 import { IncomingWebhook } from '@slack/webhook'
 
+const getColor = (status: string) => {
+  switch (status) {
+    case 'success':
+      return '#2eb886'
+    case 'cancelled':
+      return '#daa038'
+    case 'failure':
+      return '#a30200'
+    default:
+      return '#1d9bd1'
+  }
+}
+
+const getBranch = (ref: string) => {
+  const refSplit = ref.split('/')
+  const refType = refSplit[1]
+  switch (refType) {
+    case 'heads':
+      return refSplit[2]
+    case 'pull':
+      return process.env.GITHUB_HEAD_REF
+    default:
+      return 'unknown'
+  }
+}
+
+const getRefUrl = (repoUrl: string, ref: string) => {
+  const refSplit = ref.split('/')
+  const refType = refSplit[1]
+  switch (refType) {
+    case 'heads':
+      return `${repoUrl}/tree/${refSplit[2]}`
+    case 'pull':
+      return `${repoUrl}/pull/${refSplit[2]}`
+    default:
+      return repoUrl
+  }
+}
+
 void (async () => {
-  type JobStatus = 'success' | 'failure' | 'cancelled'
-
-  const jobStatus = core.getInput('job_status') as JobStatus
+  const jobStatus = core.getInput('job_status')
   const slackWebhook = core.getInput('slack_webhook')
-  const githubHost = core.getInput('github_host')
-  const githubRepository = `${github.context.repo.owner}/${github.context.repo.repo}`
-  const githubWorkflow = github.context.workflow
-  const githubRef = github.context.ref
-  const githubSha = github.context.sha
-  const githubRunId = github.context.runId
-
-  const makeFromStatus = (status: JobStatus) => {
-    switch (status) {
-      case 'success':
-        return { text: `:white_check_mark: *Action: ${githubWorkflow} SUCCEEDED*`, color: '#2eb886' }
-      case 'cancelled':
-        return { text: `:sleeping: *Action: ${githubWorkflow} CANCELLED*`, color: '#daa038' }
-      case 'failure':
-        return { text: `:fire: *Action: ${githubWorkflow} FAILED*`, color: '#a30200' }
-      default:
-        return { text: `:grey_question: *Action: ${githubWorkflow} STATUS UNKNOWN* (${status})`, color: '#1d9bd1' }
-    }
-  }
-
-  const getRefUrl = (ref: string) => {
-    const refSplit = ref.split('/')
-    const refType = refSplit[1]
-    switch (refType) {
-      case 'heads':
-        return `https://${githubHost}/${githubRepository}/tree/${refSplit[2]}`
-      case 'pull':
-        return `https://${githubHost}/${githubRepository}/pull/${refSplit[2]}`
-      default:
-        return `https://${githubHost}/${githubRepository}`
-    }
-  }
+  const host = core.getInput('github_host')
+  const repo = `${github.context.repo.owner}/${github.context.repo.repo}`
+  const actor = github.context.actor
+  const workflow = github.context.workflow
+  const ref = github.context.ref
+  const sha = github.context.sha
+  const runId = github.context.runId
+  const repoUrl = `https://${host}/${repo}`
+  const shaUrl = `${repoUrl}/commit/${sha}`
+  const logUrl = `${repoUrl}/actions/runs/${runId}`
 
   const slack = new IncomingWebhook(slackWebhook)
-
-  const { text, color } = makeFromStatus(jobStatus)
-  const shaUrl = `https://${githubHost}/${githubRepository}/commit/${githubSha}`
-  const logUrl = `https://${githubHost}/${githubRepository}/actions/runs/${githubRunId}`
-
   await slack.send({
-    text,
     attachments: [
       {
-        title: githubRepository,
-        title_link: `https://${githubHost}/${githubRepository}/`,
-        text: `<${getRefUrl(githubRef)}|${githubRef}> @ <${shaUrl}|${githubSha.slice(0, 7)}> (<${logUrl}|Show logs>)`,
-        color,
+        text: [
+          `*${jobStatus}*`,
+          `<${logUrl}|workflow:${workflow}>`,
+          `<${repoUrl}|${repo}>#<${shaUrl}|${sha.slice(0, 7)}>`,
+          `(<${getRefUrl(repoUrl, ref)}|${getBranch(ref)}>)`,
+          `by <https://${host}/${actor}|${actor}>`,
+        ].join(' '),
+        color: getColor(jobStatus),
         mrkdwn_in: ['pretext', 'text', 'fields'],
       },
     ],

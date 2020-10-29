@@ -2,7 +2,7 @@
 
 A GitHub Action to send a workflow result to a Slack channel.
 
-![image](https://user-images.githubusercontent.com/1488898/96951744-221af800-1528-11eb-8de2-c898fc0f6e9f.png)
+![image](https://user-images.githubusercontent.com/1488898/97648582-7aa64400-1a98-11eb-96bf-368511f5c8f6.png)
 
 ## Example
 
