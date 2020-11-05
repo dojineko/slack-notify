@@ -20,7 +20,7 @@ const getBranch = (ref: string) => {
   const refType = refSplit[1]
   switch (refType) {
     case 'heads':
-      return refSplit[2]
+      return refSplit.slice(2).join('/')
     case 'pull':
       return process.env.GITHUB_HEAD_REF
     default:
@@ -33,7 +33,7 @@ const getRefUrl = (repoUrl: string, ref: string) => {
   const refType = refSplit[1]
   switch (refType) {
     case 'heads':
-      return `${repoUrl}/tree/${refSplit[2]}`
+      return `${repoUrl}/tree/${refSplit.slice(2).join('/')}`
     case 'pull':
       return `${repoUrl}/pull/${refSplit[2]}`
     default:
