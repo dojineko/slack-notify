@@ -1,10 +1,6 @@
 name: 'Slack Notify'
 description: 'Slack Notify Action'
 inputs:
-  github_host:
-    description: GitHub Host
-    required: false
-    default: 'github.com'
   job_status:
     description: Job status
     required: true
