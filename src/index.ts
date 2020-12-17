@@ -44,14 +44,13 @@ const getRefUrl = (repoUrl: string, ref: string) => {
 void (async () => {
   const jobStatus = core.getInput('job_status')
   const slackWebhook = core.getInput('slack_webhook')
-  const host = core.getInput('github_host')
   const repo = `${github.context.repo.owner}/${github.context.repo.repo}`
   const actor = github.context.actor
   const workflow = github.context.workflow
   const ref = github.context.ref
   const sha = github.context.sha
   const runId = github.context.runId
-  const repoUrl = `https://${host}/${repo}`
+  const repoUrl = `${process.env.GITHUB_SERVER_URL}/${repo}`
   const shaUrl = `${repoUrl}/commit/${sha}`
   const logUrl = `${repoUrl}/actions/runs/${runId}`
 
@@ -64,7 +63,7 @@ void (async () => {
           `<${logUrl}|workflow:${workflow}>`,
           `<${repoUrl}|${repo}>#<${shaUrl}|${sha.slice(0, 7)}>`,
           `(<${getRefUrl(repoUrl, ref)}|${getBranch(ref)}>)`,
-          `by <https://${host}/${actor}|${actor}>`,
+          `by <${process.env.GITHUB_SERVER_URL}/${actor}|${actor}>`,
         ].join(' '),
         color: getColor(jobStatus),
         mrkdwn_in: ['pretext', 'text', 'fields'],
