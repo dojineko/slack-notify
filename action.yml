@@ -7,6 +7,12 @@ inputs:
   slack_webhook:
     description: Slack Incomming Webhook (legacy token is not supported)
     required: true
+  channel:
+    description: The name of the channel that the user selected as a destination for webhook messages.
+    required: false
+  icon_emoji:
+    description: Emoji to use as the icon for message.
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
