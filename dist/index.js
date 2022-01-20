@@ -79,6 +79,7 @@ void (() => __awaiter(void 0, void 0, void 0, function* () {
     const slackWebhook = core.getInput('slack_webhook');
     const channel = core.getInput('channel', { required: false });
     const iconEmoji = core.getInput('icon_emoji', { required: false });
+    const suffixForFailure = core.getInput('suffix_for_failure', { required: false });
     const repo = `${github.context.repo.owner}/${github.context.repo.repo}`;
     const actor = github.context.actor;
     const workflow = github.context.workflow;
@@ -88,19 +89,23 @@ void (() => __awaiter(void 0, void 0, void 0, function* () {
     const repoUrl = `${process.env.GITHUB_SERVER_URL}/${repo}`;
     const shaUrl = `${repoUrl}/commit/${sha}`;
     const logUrl = `${repoUrl}/actions/runs/${runId}`;
+    const textElements = [
+        `*${jobStatus}*`,
+        `<${logUrl}|workflow:${workflow}>`,
+        `<${repoUrl}|${repo}>#<${shaUrl}|${sha.slice(0, 7)}>`,
+        `(<${getRefUrl(repoUrl, ref)}|${getBranch(ref)}>)`,
+        `by <${process.env.GITHUB_SERVER_URL}/${actor}|${actor}>`,
+    ];
+    if (jobStatus === 'failure' && suffixForFailure) {
+        textElements.push(`>> ${suffixForFailure}`);
+    }
     const slack = new webhook_1.IncomingWebhook(slackWebhook);
     yield slack.send({
         channel: channel,
         icon_emoji: iconEmoji,
         attachments: [
             {
-                text: [
-                    `*${jobStatus}*`,
-                    `<${logUrl}|workflow:${workflow}>`,
-                    `<${repoUrl}|${repo}>#<${shaUrl}|${sha.slice(0, 7)}>`,
-                    `(<${getRefUrl(repoUrl, ref)}|${getBranch(ref)}>)`,
-                    `by <${process.env.GITHUB_SERVER_URL}/${actor}|${actor}>`,
-                ].join(' '),
+                text: textElements.join(' '),
                 color: getColor(jobStatus),
                 mrkdwn_in: ['pretext', 'text', 'fields'],
             },

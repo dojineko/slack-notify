@@ -23,3 +23,4 @@ job_status | (required) | Job status
 slack_webhook | (required) | Slack Incomming Webhook (legacy token is not supported)
 channel | (option) | The name of the channel that the user selected as a destination for webhook messages.
 icon_emoji | (option) | Emoji to use as the icon for message.
+suffix_for_failure | (option) | Suffix to be added if the job fails. (e.g. <@user_id> <!subteam^user_group_id> <!here>

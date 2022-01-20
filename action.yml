@@ -13,6 +13,9 @@ inputs:
   icon_emoji:
     description: Emoji to use as the icon for message.
     required: false
+  suffix_for_failure:
+    description: Suffix to be added if the job fails. (e.g. <@user_id> <!subteam^user_group_id> <!here>
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
