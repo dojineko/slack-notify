@@ -2,10 +2,12 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.npmjs.org/@actions/core/-/core-1.4.0.tgz"
-  integrity sha512-CGx2ilGq5i7zSLgiiGUtBCxhRRxibJYU6Fim0Q1Wg2aQL2LTnF27zbqZOrxfvFQ55eSBW0L8uVStgtKMpa0Qlg==
+"@actions/core@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.6.0.tgz#0568e47039bfb6a9170393a73f3b7eb3b22462cb"
+  integrity sha512-NB1UAZomZlCV/LmJqkLhNTqtKfFXJZAUPcfl/zqG7EfsQdeUJtaWO98SGbuQ3pydJ3fHl2CvI/51OKYlCYYcaw==
+  dependencies:
+    "@actions/http-client" "^1.0.11"
 
 "@actions/github@^5.0.0":
   version "5.0.0"
@@ -122,36 +124,36 @@
   resolved "https://registry.npmjs.org/@slack/types/-/types-1.10.0.tgz"
   integrity sha512-tA7GG7Tj479vojfV3AoxbckalA48aK6giGjNtgH6ihpLwTyHE3fIgRrvt8TWfLwW8X8dyu7vgmAsGLRG7hWWOg==
 
-"@slack/types@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@slack/types/-/types-2.1.0.tgz"
-  integrity sha512-6FSyuKt3dqmXpKxu5cH7vCm2Ekj7WpyaYyznTQ/SpKZKkdLvpkcp0/HbPFTtDI9O1wHGeaPgs6h3AtZmRRDXjA==
+"@slack/types@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@slack/types/-/types-2.4.0.tgz#b6f6d50e9181f723080b841302e089739cef512d"
+  integrity sha512-0k8UlVEH9gUVwTbwcanS1JT2vCROkr1WESgdXW7d2maWYTuwbVEx87YvXPjsemAJfdu+RYqxGhO2oGTigprepA==
 
-"@slack/webhook@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/@slack/webhook/-/webhook-6.0.0.tgz"
-  integrity sha512-2fohfhLI9lkAmOSWt1R457JBsB3iFNqahu4GqdFZRtcp/bT+xeG/kPn/hQa78JS74poRjWTt5G/qJjNaWMGOEQ==
+"@slack/webhook@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@slack/webhook/-/webhook-6.1.0.tgz#ac9c8add919f0f5ab9440a24e76b2f83adcc0f2c"
+  integrity sha512-7AYNISyAjn/lA/VDwZ307K5ft5DojXgBd3DRrGoFN8XxIwIyRALdFhxBiMgAqeJH8eWoktvNwLK24R9hREEqpA==
   dependencies:
     "@slack/types" "^1.2.1"
     "@types/node" ">=12.0.0"
-    axios "^0.21.1"
+    axios "^0.21.4"
 
 "@types/node@>= 8", "@types/node@>=12.0.0":
   version "16.4.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-16.4.0.tgz"
   integrity sha512-HrJuE7Mlqcjj+00JqMWpZ3tY8w7EUd+S0U3L1+PQSWiXZbOgyQDvi+ogoUxaHApPJq5diKxYBQwA3iIlNcPqOg==
 
-"@vercel/ncc@^0.29.0":
-  version "0.29.0"
-  resolved "https://registry.npmjs.org/@vercel/ncc/-/ncc-0.29.0.tgz"
-  integrity sha512-p+sB835wOSDdgm2mgFgSOcXJF84AqZ+vBEnnGS0sm8veA92Hia7sqH0qEnqeFilPl+cXtxbdh2er+WdlfbVCZA==
+"@vercel/ncc@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.33.1.tgz#b240080a3c1ded9446a30955a06a79851bb38f71"
+  integrity sha512-Mlsps/P0PLZwsCFtSol23FGqT3FhBGb4B1AuGQ52JTAtXhak+b0Fh/4T55r0/SVQPeRiX9pNItOEHwakGPmZYA==
 
-axios@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz"
-  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+axios@^0.21.4:
+  version "0.21.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
+  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
-    follow-redirects "^1.10.0"
+    follow-redirects "^1.14.0"
 
 before-after-hook@^2.2.0:
   version "2.2.2"
@@ -163,10 +165,10 @@ deprecation@^2.0.0, deprecation@^2.3.1:
   resolved "https://registry.npmjs.org/deprecation/-/deprecation-2.3.1.tgz"
   integrity sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ==
 
-follow-redirects@^1.10.0:
-  version "1.14.1"
-  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.1.tgz"
-  integrity sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==
+follow-redirects@^1.14.0:
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+  integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
 is-plain-object@^5.0.0:
   version "5.0.0"
@@ -190,10 +192,10 @@ tunnel@0.0.6:
   resolved "https://registry.npmjs.org/tunnel/-/tunnel-0.0.6.tgz"
   integrity sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==
 
-typescript@^4.3.5:
-  version "4.3.5"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.3.5.tgz"
-  integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
+typescript@^4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
+  integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
 
 universal-user-agent@^6.0.0:
   version "6.0.0"
