@@ -17,5 +17,5 @@ inputs:
     description: Suffix to be added if the job fails. (e.g. <@user_id> <!subteam^user_group_id> <!here>
     required: false
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
