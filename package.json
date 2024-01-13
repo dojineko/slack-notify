@@ -1,19 +1,29 @@
 {
-  "name": "action-slack-notify",
-  "version": "1.0.0",
+  "name": "slack-notify",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "author": "dojineko <dojineko.spiral@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "tsc && ncc build --source-map --license licenses.txt",
-    "format": "prettier --write **/*.ts"
+    "test": "npm run test:tsc && npm run test:biome && npm run test:vitest",
+    "test:tsc": "tsc --noEmit",
+    "test:biome": "biome ci .",
+    "test:vitest": "vitest run",
+    "fmt": "npm run fmt:biome && npm run fmt:prettier",
+    "fmt:biome": "biome check --apply-unsafe .",
+    "fmt:prettier": "prettier --write ."
   },
   "dependencies": {
-    "@actions/core": "^1.6.0",
-    "@actions/github": "^5.0.0",
-    "@slack/types": "^2.4.0",
-    "@slack/webhook": "^6.1.0",
-    "@vercel/ncc": "^0.33.1",
-    "typescript": "^4.5.4"
+    "@actions/core": "1.10.1",
+    "@actions/github": "6.0.0",
+    "@biomejs/biome": "1.5.1",
+    "@slack/types": "2.11.0",
+    "@slack/webhook": "7.0.2",
+    "@vercel/ncc": "0.38.1",
+    "prettier": "3.2.1",
+    "typescript": "5.3.3",
+    "vite": "5.0.11",
+    "vitest": "1.2.0"
   }
 }

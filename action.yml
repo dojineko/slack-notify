@@ -1,5 +1,5 @@
-name: 'Slack Notify'
-description: 'Slack Notify Action'
+name: "Slack Notify"
+description: "Slack Notify Action"
 inputs:
   job_status:
     description: Job status
@@ -17,5 +17,5 @@ inputs:
     description: Suffix to be added if the job fails. (e.g. <@user_id> <!subteam^user_group_id> <!here>
     required: false
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node20"
+  main: "dist/index.js"
