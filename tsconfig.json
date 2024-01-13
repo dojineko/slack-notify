@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "target": "esnext",
+    "moduleResolution": "node",
     "strict": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true
   },
   "exclude": ["node_modules", "**/*.test.ts"]
 }
